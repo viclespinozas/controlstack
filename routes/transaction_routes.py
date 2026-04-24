@@ -9,7 +9,7 @@ service = TransactionService(TransactionRepository())
 
 @router.post("/", response_model=TransactionResponse)
 async def create_transaction(payload: TransactionCreate):
-    return await service.create_item(payload.dict())
+    return await service.create_transaction(payload.dict())
 
 @router.get("/", response_model=list[TransactionResponse])
 async def list_transactions():

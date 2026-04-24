@@ -1,5 +1,5 @@
 from repositories.transaction_repo import TransactionRepository
-from models.transaction_model import Item
+from models.transaction_model import Transaction
 
 class TransactionService:
     def __init__(self, repo: TransactionRepository):

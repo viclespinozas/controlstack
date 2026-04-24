@@ -1,19 +1,26 @@
 services:
-  backend:
-    build: ./backend
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: control_backend
+    restart: unless-stopped
     env_file: .env
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      DATABASE_NAME: controlstack
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - .:/app
     depends_on:
-      - db
-    command: ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+      - mongo
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
-  db:
-    build: ./db
-    container_name: control_db
+  mongo:
+    image: mongo:7
+    container_name: controlstack_mongo
+    restart: unless-stopped
     ports:
       - "27017:27017"
     volumes:
