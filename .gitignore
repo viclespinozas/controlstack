@@ -8,3 +8,4 @@ mongo_data/
 db_data/
 *.log
 .DS_Store
+directory_tree.txt

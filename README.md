@@ -1,38 +1,34 @@
-# ControlStack (FastAPI + MongoDB)
+# ControlStack — Financial Tracking Backend (FastAPI, Distributed Architecture)
 
-A lean, containerized setup to manage and track expenses, incomes, and services — built the modern way.
+Backend service for managing financial transactions (expenses, income, services) designed with production-oriented architecture principles: modular design, containerization, and scalability.
 
-## Features
+## 🚧 Current Scope
 
-- Create transactions
-- Read transactions (all or single transaction)
-- Update transactions
-- Delete transactions
-- MongoDB integration
+* Transaction management (CRUD)
+* REST API built with FastAPI
+* MongoDB persistence layer
+* Dockerized environment (multi-stage build + docker-compose)
 
-## API Endpoints
+## 🧠 Architecture Overview
 
-### Get All transactions
-`GET /transactions`
+The project follows a layered architecture:
 
-### Get Single transaction
-`GET /transactions/{transaction_id}`
+* Routes → HTTP interface (FastAPI endpoints)
+* Services → Business logic and orchestration
+* Repositories → Data access abstraction
+* Models/Schemas → Data structure and validation
+* Core → Configuration and database setup
 
-### Create transaction
-`POST /transactions`
+This structure enforces separation of concerns and prepares the system for future scalability (e.g., background processing, distributed components).
 
-### Update transaction
-`PUT /transactions/{transaction_id}`
+## ⚙️ Tech Stack
 
-### Delete transaction
-`DELETE /transactions/{transaction_id}`
+* Python (FastAPI)
+* MongoDB
+* Docker / Docker Compose
+* Pydantic (data validation)
 
-## Requirements
-
-- Python 3.7+
-- MongoDB
-
-## Run
+## 🚀 Running the Project
 
 1. Clone or download this repository
 2. Make sure docker is up and running:
@@ -49,44 +45,10 @@ The API includes automatic interactive documentation:
 
 - **Swagger UI**: `http://localhost:8000/docs`
 
-## Usage Examples
+## 🎯 Purpose
 
-### Create an transaction
-```bash
-curl -X POST "http://localhost:8000/transactions" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Sample transaction",
-    "description": "This is a sample transaction",
-    "price": 29.99
-  }'
-```
+This project is part of a transition toward Python backend engineering, focusing on applying distributed systems and backend architecture principles in a Python ecosystem.
 
-### Get all transactions
-```bash
-curl -X GET "http://localhost:8000/transactions"
-```
+## 📌 Notes
 
-### Get a specific transaction
-```bash
-curl -X GET "http://localhost:8000/transactions/{transaction_id}"
-```
-
-### Update an transaction
-```bash
-curl -X PUT "http://localhost:8000/transactions/{transaction_id}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Updated transaction Name",
-    "price": 39.99
-  }'
-```
-
-### Delete an transaction
-```bash
-curl -X DELETE "http://localhost:8000/transactions/{transaction_id}"
-```
-
-## License
-
-This project is licensed under the MIT License.
+The current implementation focuses on clean architecture and maintainability. Future iterations will introduce more advanced system design components to simulate real-world backend environments.
