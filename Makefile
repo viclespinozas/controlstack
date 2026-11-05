@@ -12,3 +12,6 @@ logs:
 
 shell:
 	docker exec -it control_backend bash
+
+alembic_init:
+	docker-compose exec api alembic init alembic
