@@ -22,10 +22,11 @@ make up      # start the API and Postgres in the background
 make down    # stop them
 make logs    # follow API logs
 make shell   # open a shell in the API container
+docker compose up -d --wait   # start both and wait for healthchecks to pass
 docker compose ps    # check container health
 ```
 
-The API runs at http://localhost:8000, with interactive docs at `/docs`.
+The API runs at http://localhost:8000, with interactive docs at `/docs`. Only Postgres has a healthcheck, so use `GET /health` to check the API.
 
 ## Layout
 - `main.py`: app entry point and router registration
