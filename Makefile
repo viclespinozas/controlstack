@@ -8,7 +8,7 @@ down:
 	docker-compose down
 
 logs:
-	docker-compose logs -f backend
+	docker-compose logs -f api
 
 shell:
 	docker exec -it control_backend bash
