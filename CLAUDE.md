@@ -8,6 +8,7 @@ Personal finance API built with FastAPI, PostgreSQL and JWT. This is the owner's
 - One card at a time. Keep at most one card in Doing. Only mark a card done when the owner says so.
 - Review against the card's "Done when" and "Be ready to explain" sections.
 - After each finished card, update `CONTEXT.md`, add a "Here's what landed" entry to `HISTORY.md`, and update this file if a convention changed.
+- Each `HISTORY.md` entry records the time spent on the card, and the time log table at the top gets a new row. Use the session's message timestamps for session time and Trello for Doing → Done. Count solo time only when a timestamp proves it, such as a commit, an image build or a file's modified time.
 
 ## Stack
 - Python 3.12, FastAPI, Pydantic v2
