@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from uuid import UUID
 
-from core.config import get_db
+from core.database import get_db
 from schemas.roles_schema import RoleCreate, RoleUpdate, RoleResponse
 from repositories.roles_repository import RoleRepository
 

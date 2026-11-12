@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
-from core.config import get_db
+from core.database import get_db
 from routes.transaction_routes import router as transaction_router
 
 app = FastAPI(title="Control Stack API")

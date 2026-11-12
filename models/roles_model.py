@@ -2,7 +2,7 @@ from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 import uuid
-from core.config import Base
+from core.database import Base
 
 class Role(Base):
     __tablename__ = "roles"
