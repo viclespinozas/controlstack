@@ -48,12 +48,12 @@ Roles card (1 pt), not moved to Doing yet. Decide whether to delete or keep Role
 ## Plan
 | Block | Due | Points | Cards, in order |
 | --- | --- | --- | --- |
-| 1: Finish the migration | Sun Nov 15 | 14 (10 left) | ~~Compose (2)~~, ~~config split (2)~~, Roles (1), Alembic (2), Transaction (5), per-request `Depends` (2) |
-| 2: Auth and ownership | Sun Nov 29 | 11 | User model (3), register and token (3), `get_current_user` (2), scope queries (3) |
-| 3: Tests and CI | Sun Dec 13 | 15 | Test setup (5), tests (3), pagination (2), errors (3), GitHub Actions (2) |
-| 4: Signal | Sun Dec 20 | 7 | Dockerfile (2), README (2), interview drill (3) |
+| 1: Finish the migration | Sun Nov 22 | 14 (10 left) | ~~Compose (2)~~, ~~config split (2)~~, Roles (1), Alembic (2), Transaction (5), per-request `Depends` (2) |
+| 2: Auth and ownership | Sun Dec 6 | 11 | User model (3), register and token (3), `get_current_user` (2), scope queries (3) |
+| 3: Tests and CI | Sun Dec 20 | 15 | Test setup (5), tests (3), pagination (2), errors (3), GitHub Actions (2) |
+| 4: Signal | Sun Dec 27 | 7 | Dockerfile (2), README (2), interview drill (3) |
 
-Total: 47 points, 4 done. The 10 points left in Block 1 are due Sun Nov 15, 3 days away, so the block will probably slip. Decide whether to move the due date or cut scope. The time spent on each card is in the local `HISTORY.md` time log.
+Total: 47 points, 4 done. On Nov 12 every block moved back one week, because a heavy work week left little time. That gives the 10 points left in Block 1 until Sun Nov 22. The original dates were Nov 15, Nov 29, Dec 13 and Dec 20. The time spent on each card is in the local `HISTORY.md` time log.
 
 ## Open decisions
 - **Roles:** delete (the card's default, 1 point) or keep (closer to 3 points). Decide before the Alembic card.
