@@ -7,24 +7,33 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      MONGO_URI: mongodb://mongo:27017
-      DATABASE_NAME: controlstack
+      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     depends_on:
-      - mongo
+      postgres:
+        condition: service_healthy
     command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
-  mongo:
-    image: mongo:7
-    container_name: controlstack_mongo
+  postgres:
+    image: postgres:16
+    container_name: controlstack_postgres
     restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "27017:27017"
+      - "5432:5432"
     volumes:
-      - mongo_data:/data/db
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  mongo_data:
+  postgres_data:
