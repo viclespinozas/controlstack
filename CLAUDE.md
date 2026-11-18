@@ -9,6 +9,7 @@ Personal finance API built with FastAPI, PostgreSQL and JWT. This is the owner's
 - Review against the card's "Done when" and "Be ready to explain" sections.
 - After each finished card, update `CONTEXT.md`, add a "Here's what landed" entry to `HISTORY.md`, and update this file if a convention changed.
 - Each `HISTORY.md` entry records the time spent on the card, and the time log table at the top gets a new row. Use the session's message timestamps for session time and Trello for Doing → Done. Count solo time only when a timestamp proves it, such as a commit, an image build or a file's modified time.
+- The owner can mark solo time with the messages "starting solo time" and "finished solo time", plus "pause" and "resume" for breaks. Reply with a one-line acknowledgement and nothing else. When logging the card, sum the marked spans from the session logs in this project's folder, so a marker sent from any session counts.
 
 ## Stack
 - Python 3.12, FastAPI, Pydantic v2

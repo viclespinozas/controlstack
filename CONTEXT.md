@@ -1,6 +1,6 @@
 # Context: where the project stands
 
-Last updated: Thu Nov 12, 2026. The compose and config split cards are done. Nothing is in Doing, and Roles is next. The latest code commit is `b7aac6d`.
+Last updated: Wed Nov 18, 2026. The compose, config split and Roles cards are done. Nothing is in Doing, and Alembic is next. The latest code commit is `017a3c4`.
 
 Branch: `refactor/migrate-data-layer-from-mongodb-to-postgresql`, in draft [PR #5](https://github.com/viclespinozas/controlstack/pull/5). GitHub has the latest commit, but the local branch has no upstream set, so `git push` needs `-u` the first time.
 
@@ -15,7 +15,7 @@ Branch: `refactor/migrate-data-layer-from-mongodb-to-postgresql`, in draft [PR #
 | `GET /health` | Works against Postgres |
 | `/transactions` | Still Mongo code. It can't work because compose has no Mongo |
 | `Transaction` | Pydantic class with only `id`, `name`, `description` |
-| Roles | Model, schema, repository and routes exist, but the router isn't registered and `relationship("UserRole")` is broken |
+| Roles | Deleted on Nov 18 (`017a3c4`) to keep things simple. Add roles back when a feature needs them |
 | Alembic | Initialised with the sync template, needs redoing as async. No migrations |
 
 ## What does not exist yet
@@ -38,7 +38,7 @@ Not verified:
 - **API health in Docker.** The `api` service has no healthcheck, so `up --wait` printing "Healthy" for it doesn't test the app. `GET /health` is the real check.
 
 ## Next
-Roles card (1 pt), not moved to Doing yet. Decide whether to delete or keep Roles before the Alembic card, and write the reason on the card. `models/roles_model.py` and `routes/roles_route.py` now import from `core.database`.
+Alembic card (2 pts), not moved to Doing yet. Redo `alembic init` with the async template (`-t async`), point `env.py` at `settings.database_url` and `Base.metadata`, then make the first migration and read its SQL before applying it. No models inherit from `Base` right now, so the first migration may be empty, and that's fine.
 
 ## Small leftovers
 - **`POSTGRES_USER` is unused.** `.env` and `.env.example` set it, but compose hardcodes `postgres` in the service, `DATABASE_URL` and `pg_isready`. Use the variable everywhere or drop it. Fold this into the next commit.
@@ -48,15 +48,14 @@ Roles card (1 pt), not moved to Doing yet. Decide whether to delete or keep Role
 ## Plan
 | Block | Due | Points | Cards, in order |
 | --- | --- | --- | --- |
-| 1: Finish the migration | Sun Nov 22 | 14 (10 left) | ~~Compose (2)~~, ~~config split (2)~~, Roles (1), Alembic (2), Transaction (5), per-request `Depends` (2) |
+| 1: Finish the migration | Sun Nov 22 | 14 (9 left) | ~~Compose (2)~~, ~~config split (2)~~, ~~Roles (1)~~, Alembic (2), Transaction (5), per-request `Depends` (2) |
 | 2: Auth and ownership | Sun Dec 6 | 11 | User model (3), register and token (3), `get_current_user` (2), scope queries (3) |
 | 3: Tests and CI | Sun Dec 20 | 15 | Test setup (5), tests (3), pagination (2), errors (3), GitHub Actions (2) |
 | 4: Signal | Sun Dec 27 | 7 | Dockerfile (2), README (2), interview drill (3) |
 
-Total: 47 points, 4 done. On Nov 12 every block moved back one week, because a heavy work week left little time. That gives the 10 points left in Block 1 until Sun Nov 22. The original dates were Nov 15, Nov 29, Dec 13 and Dec 20. The time spent on each card is in the local `HISTORY.md` time log.
+Total: 47 points, 5 done. On Nov 12 every block moved back one week, because a heavy work week left little time. The 9 points left in Block 1 are due Sun Nov 22. The original dates were Nov 15, Nov 29, Dec 13 and Dec 20. The time spent on each card is in the local `HISTORY.md` time log.
 
 ## Open decisions
-- **Roles:** delete (the card's default, 1 point) or keep (closer to 3 points). Decide before the Alembic card.
 - **Where `commit` lives:** repository, service or a shared unit of work. Decide on the `Depends` card.
 
 ## Sequencing to remember
